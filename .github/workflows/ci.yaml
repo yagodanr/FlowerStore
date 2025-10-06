@@ -17,10 +17,10 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
-      - name: Checkout code
-        uses actions/checkout@2
-        with:
-          fetch-depth: 0
+      # - name: Checkout code
+      #   uses actions/checkout@2
+      #   with:
+      #     fetch-depth: 0
       - name: Lint Code Base
         uses: super-linter/super-linter@v8.2.0
         env:
