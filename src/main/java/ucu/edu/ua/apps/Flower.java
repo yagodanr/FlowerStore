@@ -11,4 +11,11 @@ public class Flower {
     private FlowerColor color;
     private double price;
     private FlowerType flowerType;
+
+    public Flower(Flower flower) {
+        sepalLength = flower.sepalLength;
+        color = flower.color;
+        price = flower.price;
+        flowerType = flower.flowerType;
+    }
 }
