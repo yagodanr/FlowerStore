@@ -29,4 +29,21 @@ public class Flower {
     public String getColor() {
         return color.toString();
     }
+
+    public boolean equals(Flower flower) {
+        if(sepalLength != flower.sepalLength) {
+            return false;
+        }
+        if(color != flower.color) {
+            return false;
+        }
+        if(price != flower.price) {
+            return false;
+        }
+        if(flowerType != flower.flowerType) {
+            return false;
+        }
+
+        return true;
+    }
 }

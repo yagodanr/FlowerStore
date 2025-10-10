@@ -19,4 +19,13 @@ public class FlowerBucket {
     public void add(FlowerPack flowerPack) {
         flowerPacks.add(flowerPack);
     }
+
+    public boolean contains(Flower flower) {
+        for (FlowerPack flowerPack : flowerPacks) {
+            if(flowerPack.contains(flower)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
