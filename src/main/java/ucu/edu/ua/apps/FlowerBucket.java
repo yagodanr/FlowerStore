@@ -1,10 +1,11 @@
 package ucu.edu.ua.apps;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class FlowerBucket {
-    private List<FlowerPack> flowerPacks;
+    private List<FlowerPack> flowerPacks = new ArrayList<>();
 
     public double getPrice() {
         double price = 0;
@@ -13,5 +14,9 @@ public class FlowerBucket {
             price += flowerPack.getPrice();
         }
         return price;
+    }
+
+    public void add(FlowerPack flowerPack) {
+        flowerPacks.add(flowerPack);
     }
 }
