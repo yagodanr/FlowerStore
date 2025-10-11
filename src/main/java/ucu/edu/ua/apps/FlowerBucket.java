@@ -20,6 +20,10 @@ public class FlowerBucket {
         flowerPacks.add(flowerPack);
     }
 
+    public void add(Flower rose, int i) {
+        FlowerPack temp = new FlowerPack(rose, i);
+        flowerPacks.add(temp);
+    }
     public boolean contains(Flower flower) {
         for (FlowerPack flowerPack : flowerPacks) {
             if(flowerPack.contains(flower)) {
@@ -28,4 +32,5 @@ public class FlowerBucket {
         }
         return false;
     }
+
 }

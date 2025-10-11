@@ -11,7 +11,7 @@ public class Store {
         List<FlowerBucket> matched = new ArrayList<>();
 
         for (FlowerBucket flowerBucket : flowerBuckets) {
-            if(flowerBucket.getPrice() == price) {
+            if(flowerBucket.getPrice() <= price) {
                 matched.add(flowerBucket);
             }
         }
@@ -28,5 +28,9 @@ public class Store {
         }
 
         return matched;
+    }
+
+    public void add(FlowerBucket bucket) {
+        flowerBuckets.add(bucket);
     }
 }
