@@ -7,8 +7,7 @@ import ucu.edu.ua.apps.FlowerColor;
 import ucu.edu.ua.apps.FlowerType;
 import ucu.edu.ua.apps.Store;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Assertions;
 
 import java.util.List;
 
@@ -39,32 +38,32 @@ public class StoreTest {
     @Test
     void testSearchByPrice() {
         List<FlowerBucket> result = store.search(PRICE_THRESHOLD);
-        assertTrue(result.isEmpty());
+        Assertions.assertTrue(result.isEmpty());
 
         store.add(firstBucket);  // Assuming total price is 50
         result = store.search(PRICE_THRESHOLD);
-        assertEquals(1, result.size());
-        assertEquals(firstBucket, result.get(0));
+        Assertions.assertEquals(1, result.size());
+        Assertions.assertEquals(firstBucket, result.get(0));
 
         store.add(secondBucket);
         result = store.search(PRICE_THRESHOLD);
-        assertEquals(2, result.size());
-        assertEquals(firstBucket, result.get(0));
-        assertEquals(secondBucket, result.get(1));
+        Assertions.assertEquals(2, result.size());
+        Assertions.assertEquals(firstBucket, result.get(0));
+        Assertions.assertEquals(secondBucket, result.get(1));
     }
 
     @Test
     void testSearchByFlower() {
         List<FlowerBucket> result = store.search(ROSE);
-        assertTrue(result.isEmpty());
+        Assertions.assertTrue(result.isEmpty());
 
         store.add(firstBucket);
         store.add(secondBucket);
 
         result = store.search(ROSE);
-        assertEquals(2, result.size());
-        assertTrue(result.contains(firstBucket));
-        assertTrue(result.contains(secondBucket));
+        Assertions.assertEquals(2, result.size());
+        Assertions.assertTrue(result.contains(firstBucket));
+        Assertions.assertTrue(result.contains(secondBucket));
     }
 }
 //CHECKSTYLE:ON

@@ -17,7 +17,7 @@ public class FlowerPack {
         return flower.getPrice() * count;
     }
 
-    public boolean contains(Flower flower) {
-        return this.flower.equals(flower);
+    public boolean contains(Flower fl) {
+        return this.flower.equals(fl);
     }
 }

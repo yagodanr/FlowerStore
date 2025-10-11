@@ -46,4 +46,7 @@ public class Flower {
 
         return true;
     }
+    public boolean equals(Object o) {
+        return false;
+    }
 }

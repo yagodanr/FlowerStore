@@ -36,14 +36,18 @@ public class FlowerPackTest {
     void containsReturnsTrueForEqualFlower() {
         final Flower TULIP = createFlower(FlowerColor.YELLOW, TULIP_PRICE, 8.0);
         final FlowerPack PACK = new FlowerPack(TULIP, SMALL_COUNT);
-        final Flower SAME_TULIP = createFlower(FlowerColor.YELLOW, TULIP_PRICE, 8.0);
+        final Flower SAME_TULIP = createFlower(
+            FlowerColor.YELLOW, TULIP_PRICE, 8.0
+        );
 
         Assertions.assertTrue(PACK.contains(SAME_TULIP));
     }
 
     @Test
     void containsReturnsFalseForDifferentFlower() {
-        final Flower CHAMOMILE = createFlower(FlowerColor.RED, CHAMOMILE_PRICE, 6.0);
+        final Flower CHAMOMILE = createFlower(
+            FlowerColor.RED, CHAMOMILE_PRICE, 6.0
+        );
         final FlowerPack PACK = new FlowerPack(CHAMOMILE, SMALL_COUNT);
         final Flower TULIP = createFlower(FlowerColor.RED, TULIP_PRICE, 8.0);
 

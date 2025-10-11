@@ -13,4 +13,8 @@ public enum FlowerColor {
     public String toString() {
         return hexColor;
     }
+
+    public boolean equals(FlowerColor other) {
+        return hexColor.equals(other.hexColor);
+    }
 }
