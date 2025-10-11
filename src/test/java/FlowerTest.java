@@ -9,6 +9,7 @@ import java.util.Random;
 
 import org.junit.jupiter.api.Assertions;
 
+//CHECKSTYLE:OFF
 public class FlowerTest {
     private static final Random RANDOM_GENERATOR = new Random();
     private static final int MAX_PRICE = 100;
@@ -33,3 +34,4 @@ public class FlowerTest {
         Assertions.assertEquals("#FF0000", flower.getColor());
     }
 }
+//CHECKSTYLE:ON

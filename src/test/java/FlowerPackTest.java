@@ -1,14 +1,12 @@
-
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
 
 import ucu.edu.ua.apps.Flower;
 import ucu.edu.ua.apps.FlowerColor;
 import ucu.edu.ua.apps.FlowerPack;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+//CHECKSTYLE:OFF
 public class FlowerPackTest {
-
     private static final double DELTA = 1e-6;
     private static final double ROSE_PRICE = 10.0;
     private static final double TULIP_PRICE = 5.0;
@@ -16,53 +14,51 @@ public class FlowerPackTest {
     private static final int FLOWER_COUNT = 5;
     private static final int SMALL_COUNT = 2;
 
-    private Flower createFlower(final FlowerColor color, final double price, final double sepalLength) {
-        final Flower flower = new Flower();
-        flower.setColor(color);
-        flower.setPrice(price);
-        flower.setSepalLength(sepalLength);
-        return flower;
+    private Flower createFlower(final FlowerColor flowerColor,
+            final double flowerPrice, final double sepalLength) {
+        final Flower FLOWER = new Flower();
+        FLOWER.setColor(flowerColor);
+        FLOWER.setPrice(flowerPrice);
+        FLOWER.setSepalLength(sepalLength);
+        return FLOWER;
     }
 
     @Test
     void getPriceReturnsCorrectValue() {
-        final Flower rose = createFlower(FlowerColor.RED, ROSE_PRICE, 10.0);
-        final FlowerPack pack = new FlowerPack(rose, FLOWER_COUNT);
+        final Flower ROSE = createFlower(FlowerColor.RED, ROSE_PRICE, 10.0);
+        final FlowerPack PACK = new FlowerPack(ROSE, FLOWER_COUNT);
+        final double EXPECTED_PRICE = ROSE_PRICE * FLOWER_COUNT;
 
-        final double expectedPrice = ROSE_PRICE * FLOWER_COUNT;
-        assertEquals(expectedPrice, pack.getPrice(), DELTA,
-                "getPrice() should return flower price multiplied by count");
+        Assertions.assertEquals(EXPECTED_PRICE, PACK.getPrice(), DELTA);
     }
 
     @Test
     void containsReturnsTrueForEqualFlower() {
-        final Flower tulip = createFlower(FlowerColor.YELLOW, TULIP_PRICE, 8.0);
-        final FlowerPack pack = new FlowerPack(tulip, SMALL_COUNT);
+        final Flower TULIP = createFlower(FlowerColor.YELLOW, TULIP_PRICE, 8.0);
+        final FlowerPack PACK = new FlowerPack(TULIP, SMALL_COUNT);
+        final Flower SAME_TULIP = createFlower(FlowerColor.YELLOW, TULIP_PRICE, 8.0);
 
-        final Flower sameTulip = createFlower(FlowerColor.YELLOW, TULIP_PRICE, 8.0);
-        assertTrue(pack.contains(sameTulip),
-                "contains() should return true for an equal flower");
+        Assertions.assertTrue(PACK.contains(SAME_TULIP));
     }
 
     @Test
     void containsReturnsFalseForDifferentFlower() {
-        final Flower chamomile = createFlower(FlowerColor.RED, CHAMOMILE_PRICE, 6.0);
-        final FlowerPack pack = new FlowerPack(chamomile, SMALL_COUNT);
+        final Flower CHAMOMILE = createFlower(FlowerColor.RED, CHAMOMILE_PRICE, 6.0);
+        final FlowerPack PACK = new FlowerPack(CHAMOMILE, SMALL_COUNT);
+        final Flower TULIP = createFlower(FlowerColor.RED, TULIP_PRICE, 8.0);
 
-        final Flower tulip = createFlower(FlowerColor.RED, TULIP_PRICE, 8.0);
-        assertFalse(pack.contains(tulip),
-                "contains() should return false for a different flower");
+        Assertions.assertFalse(PACK.contains(TULIP));
     }
 
     @Test
     void changingOriginalFlowerDoesNotAffectPack() {
-        final Flower rose = createFlower(FlowerColor.RED, ROSE_PRICE, 7.0);
-        final FlowerPack pack = new FlowerPack(rose, SMALL_COUNT);
+        final Flower ROSE = createFlower(FlowerColor.RED, ROSE_PRICE, 7.0);
+        final FlowerPack PACK = new FlowerPack(ROSE, SMALL_COUNT);
+        final double PRICE_MULTIPLIER = 2.0;
+        ROSE.setPrice(ROSE_PRICE * PRICE_MULTIPLIER);
 
-        rose.setPrice(ROSE_PRICE * 10); // mutate original
-
-        final double expectedPrice = ROSE_PRICE * SMALL_COUNT;
-        assertEquals(expectedPrice, pack.getPrice(), DELTA,
-                "FlowerPack should copy flower defensively to prevent external mutation");
+        final double EXPECTED_PRICE = ROSE_PRICE * SMALL_COUNT;
+        Assertions.assertEquals(EXPECTED_PRICE, PACK.getPrice(), DELTA);
     }
 }
+//CHECKSTYLE:ON

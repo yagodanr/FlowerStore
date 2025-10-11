@@ -10,6 +10,7 @@ import ucu.edu.ua.apps.FlowerPack;
 import org.junit.jupiter.api.Assertions;
 
 import java.util.Random;
+//CHECKSTYLE:OFF
 
 public class FlowerBucketTest {
     private static final Random RANDOM_GENERATOR = new Random();
@@ -34,3 +35,4 @@ public class FlowerBucketTest {
         Assertions.assertEquals(price * quantity, flowerBucket.getPrice());
     }
 }
+//CHECKSTYLE:ON

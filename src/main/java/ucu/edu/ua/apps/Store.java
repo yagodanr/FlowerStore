@@ -6,12 +6,11 @@ import java.util.List;
 public class Store {
     private List<FlowerBucket> flowerBuckets = new ArrayList<>();
 
-
     public List<FlowerBucket> search(int price) {
         List<FlowerBucket> matched = new ArrayList<>();
 
         for (FlowerBucket flowerBucket : flowerBuckets) {
-            if(flowerBucket.getPrice() <= price) {
+            if (flowerBucket.getPrice() <= price) {
                 matched.add(flowerBucket);
             }
         }

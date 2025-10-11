@@ -26,7 +26,7 @@ public class FlowerBucket {
     }
     public boolean contains(Flower flower) {
         for (FlowerPack flowerPack : flowerPacks) {
-            if(flowerPack.contains(flower)) {
+            if (flowerPack.contains(flower)) {
                 return true;
             }
         }

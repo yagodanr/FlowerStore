@@ -31,16 +31,16 @@ public class Flower {
     }
 
     public boolean equals(Flower flower) {
-        if(sepalLength != flower.sepalLength) {
+        if (sepalLength != flower.sepalLength) {
             return false;
         }
-        if(color != flower.color) {
+        if (color != flower.color) {
             return false;
         }
-        if(price != flower.price) {
+        if (price != flower.price) {
             return false;
         }
-        if(flowerType != flower.flowerType) {
+        if (flowerType != flower.flowerType) {
             return false;
         }
 
