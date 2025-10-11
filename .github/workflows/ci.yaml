@@ -12,6 +12,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # This ensures full git history is fetched
+
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
