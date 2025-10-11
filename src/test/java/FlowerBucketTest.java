@@ -5,9 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import ucu.edu.ua.apps.Flower;
 import ucu.edu.ua.apps.FlowerBucket;
-import ucu.edu.ua.apps.FlowerColor;
 import ucu.edu.ua.apps.FlowerPack;
-import ucu.edu.ua.apps.FlowerType;
 
 import org.junit.jupiter.api.Assertions;
 
@@ -29,8 +27,8 @@ public class FlowerBucketTest {
     public void testPrice() {
         int price = RANDOM_GENERATOR.nextInt(MAX_PRICE);
         int quantity = RANDOM_GENERATOR.nextInt(MAX_QUANTITY);
-        Flower flower = new Flower(5.0, FlowerColor.RED, price, FlowerType.ROSE);
-        // flower.setPrice(10);
+        Flower flower = new Flower();
+        flower.setPrice(price);
         FlowerPack flowerPack = new FlowerPack(flower, quantity);
         flowerBucket.add(flowerPack);
         Assertions.assertEquals(price * quantity, flowerBucket.getPrice());
