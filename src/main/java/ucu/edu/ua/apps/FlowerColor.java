@@ -14,7 +14,4 @@ public enum FlowerColor {
         return hexColor;
     }
 
-    public boolean equals(FlowerColor other) {
-        return hexColor.equals(other.hexColor);
-    }
 }
