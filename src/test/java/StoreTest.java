@@ -1,11 +1,11 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ucu.edu.ua.apps.Flower;
-import ucu.edu.ua.apps.FlowerBucket;
-import ucu.edu.ua.apps.FlowerColor;
-import ucu.edu.ua.apps.FlowerType;
-import ucu.edu.ua.apps.Store;
+import flowers.Flower;
+import flowers.FlowerBucket;
+import flowers.FlowerColor;
+import flowers.FlowerType;
+import flowers.Store;
 
 import org.junit.jupiter.api.Assertions;
 

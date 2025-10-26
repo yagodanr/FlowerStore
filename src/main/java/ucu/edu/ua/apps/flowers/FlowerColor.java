@@ -1,4 +1,4 @@
-package ucu.edu.ua.apps;
+package flowers;
 
 public enum FlowerColor {
     RED("#FF0000"), GREEN("#008000"), WHITE("#FFFFFF"), YELLOW("#FFDE21"),

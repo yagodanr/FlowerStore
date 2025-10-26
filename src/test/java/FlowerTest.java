@@ -2,8 +2,8 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import ucu.edu.ua.apps.Flower;
-import ucu.edu.ua.apps.FlowerColor;
+import flowers.Flower;
+import flowers.FlowerColor;
 
 import java.util.Random;
 

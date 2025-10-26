@@ -1,9 +1,11 @@
 import org.junit.jupiter.api.Test;
+
+import flowers.Flower;
+import flowers.FlowerColor;
+import flowers.FlowerPack;
+
 import org.junit.jupiter.api.Assertions;
 
-import ucu.edu.ua.apps.Flower;
-import ucu.edu.ua.apps.FlowerColor;
-import ucu.edu.ua.apps.FlowerPack;
 
 //CHECKSTYLE:OFF
 public class FlowerPackTest {

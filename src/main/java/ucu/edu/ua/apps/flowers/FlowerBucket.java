@@ -1,4 +1,4 @@
-package ucu.edu.ua.apps;
+package flowers;
 
 import java.util.ArrayList;
 import java.util.List;

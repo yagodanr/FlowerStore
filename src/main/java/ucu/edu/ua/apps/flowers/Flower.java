@@ -1,4 +1,4 @@
-package ucu.edu.ua.apps;
+package flowers;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
