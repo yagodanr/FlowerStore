@@ -9,10 +9,12 @@ public class Order {
     private String userId;
     private List<Item> items = new ArrayList<>();
     private PaymentStrategy paymentStrategy;
+    private DeliveryStrategy deliveryStrategy;
 
-    public Order(String userId, PaymentStrategy paymentStrategy) {
+    public Order(String userId, PaymentStrategy paymentStrategy, DeliveryStrategy deliveryStrategy) {
         this.userId = userId;
         this.paymentStrategy = paymentStrategy;
+        this.deliveryStrategy = deliveryStrategy;
         orderId = UUID.randomUUID().toString();
     }
 
@@ -26,5 +28,10 @@ public class Order {
 
     public int pay(double amount) {
         return paymentStrategy.pay(amount);
+    }
+
+    public String orderDelivery(String destination) {
+        deliveryStrategy.contactDeliveryService(orderId, userId, destination);
+        return deliveryStrategy.getStatus(orderId);
     }
 }
