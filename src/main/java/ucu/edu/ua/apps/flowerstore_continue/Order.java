@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import lombok.Getter;
+
+@Getter
 public class Order {
     private String orderId;
     private String userId;

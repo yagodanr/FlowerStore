@@ -4,8 +4,7 @@ public class CreditPaymentStrategy implements PaymentStrategy {
 
     @Override
     public String getName() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getName'");
+        return "Credit username";
     }
 
     @Override
