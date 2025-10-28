@@ -14,7 +14,9 @@ public class Order {
     private PaymentStrategy paymentStrategy;
     private DeliveryStrategy deliveryStrategy;
 
-    public Order(String userId, PaymentStrategy paymentStrategy, DeliveryStrategy deliveryStrategy) {
+    public Order(String userId,
+                 PaymentStrategy paymentStrategy, DeliveryStrategy deliveryStrategy
+                 ) {
         this.userId = userId;
         this.paymentStrategy = paymentStrategy;
         this.deliveryStrategy = deliveryStrategy;

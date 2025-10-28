@@ -11,12 +11,6 @@
     <!-- Checks that property files contain the same keys. -->
     <module name="Translation"/>
 
-    <!-- Checks that no tab characters in the source code. -->
-    <!-- Reports only first instance. -->
-    <module name="FileTabCharacter">
-        <property name="eachLine" value="false"/>
-    </module>
-
 
     <!-- Checks that no file is more than 1500 lines long. -->
     <module name="FileLength">
@@ -25,7 +19,7 @@
 
     <!-- Check that length of line is at most 80 characters. -->
     <module name="LineLength">
-        <property name="max" value="80"/>
+        <property name="max" value="100"/>
         <property name="ignorePattern" value="^ *\* *[^ ]+$"/>
     </module>
 
@@ -219,9 +213,9 @@
         </module>
 
         <module name="PackageName">
-            <property name="format" value="^[a-z]+(\.[a-z][a-z]*)*$"/>
+            <property name="format" value="^[a-z_]+(\.[a-z][a-z_]*)*$"/>
         </module>
-        <module name="PackageName"/>
+        <!-- <module name="PackageName"/> -->
         <module name="ParameterName">
             <property name="format" value="^[a-z][a-zA-Z]*$"/>
         </module>

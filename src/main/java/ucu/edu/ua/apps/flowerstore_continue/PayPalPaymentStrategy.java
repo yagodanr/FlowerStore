@@ -1,6 +1,6 @@
 package flowerstore_continue;
 
-public class PayPalPaymentStrategy implements PaymentStrategy{
+public class PayPalPaymentStrategy implements PaymentStrategy {
 
     @Override
     public String getName() {

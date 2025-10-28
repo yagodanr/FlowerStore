@@ -101,6 +101,31 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>3.3.1</version>
+				<configuration>
+					<!-- Point Checkstyle to your custom rules -->
+					<configLocation>.github/linters/checkstyle.xml</configLocation>
+
+					<!-- Optional: fail build if violations are found -->
+					<failOnViolation>true</failOnViolation>
+
+					<!-- Optional: encoding and cache -->
+					<encoding>UTF-8</encoding>
+					<consoleOutput>true</consoleOutput>
+					<violationSeverity>error</violationSeverity>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>verify</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
