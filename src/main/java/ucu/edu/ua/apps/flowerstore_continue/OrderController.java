@@ -47,7 +47,7 @@ public class OrderController {
                          @RequestParam int count) {
 
         Order order = getOrder(orderId);
-        Flower flower = new Flower(15.0, color, price, type);
+        Flower flower = new Flower(1L, 15.0, color, price, type);
         order.addItem(new Item(flower, count));
         return order.getItems();
     }

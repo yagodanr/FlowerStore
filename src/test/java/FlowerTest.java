@@ -30,7 +30,7 @@ public class FlowerTest {
     @Test
     public void testColor() {
         FlowerColor color = FlowerColor.RED;
-        flower.setColor(color);
+        flower.setFlowerColor(color);
         Assertions.assertEquals("#FF0000", flower.getColor());
     }
 }
