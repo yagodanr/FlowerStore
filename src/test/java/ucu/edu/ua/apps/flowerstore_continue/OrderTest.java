@@ -25,8 +25,8 @@ public class OrderTest {
 
     @BeforeEach
     void setup() {
-        rose = new Flower(10.0, FlowerColor.RED, 50.0, FlowerType.ROSE);
-        tulip = new Flower(15.0, FlowerColor.YELLOW, 30.0, FlowerType.TULIP);
+        rose = new Flower(null, 10.0, FlowerColor.RED, 50.0, FlowerType.ROSE);
+        tulip = new Flower(null, 15.0, FlowerColor.YELLOW, 30.0, FlowerType.TULIP);
     }
 
     @Test

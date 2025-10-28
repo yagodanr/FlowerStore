@@ -19,7 +19,7 @@ public class FlowerPackTest {
     private Flower createFlower(final FlowerColor flowerColor,
             final double flowerPrice, final double sepalLength) {
         final Flower FLOWER = new Flower();
-        FLOWER.setColor(flowerColor);
+        FLOWER.setFlowerColor(flowerColor);
         FLOWER.setPrice(flowerPrice);
         FLOWER.setSepalLength(sepalLength);
         return FLOWER;

@@ -1,40 +1,54 @@
 package flowers;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter @Setter @ToString @AllArgsConstructor
+
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "flowers")
 public class Flower {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private double sepalLength;
-    private FlowerColor color;
+    @Enumerated(EnumType.STRING)
+    private FlowerColor flowerColor;
     private double price;
+    @Enumerated(EnumType.STRING)
     private FlowerType flowerType;
 
-    public Flower() {
-        sepalLength = 0.0;
-        color = FlowerColor.WHITE;
-        price = 0.0;
-        flowerType = FlowerType.ROSE;
-    }
 
     public Flower(Flower flower) {
         sepalLength = flower.sepalLength;
-        color = flower.color;
+        flowerColor = flower.flowerColor;
         price = flower.price;
         flowerType = flower.flowerType;
     }
 
     public String getColor() {
-        return color.toString();
+        return flowerColor.toString();
     }
 
     public boolean equals(Flower flower) {
         if (sepalLength != flower.sepalLength) {
             return false;
         }
-        if (color != flower.color) {
+        if (flowerColor != flower.flowerColor) {
             return false;
         }
         if (price != flower.price) {

@@ -26,7 +26,7 @@ public class StoreTest {
     @BeforeEach
     void setUp() {
         store = new Store();
-        ROSE = new Flower(0, FlowerColor.RED, ROSE_PRICE, FlowerType.ROSE);
+        ROSE = new Flower(2L, 0, FlowerColor.RED, ROSE_PRICE, FlowerType.ROSE);
 
         firstBucket = new FlowerBucket();
         firstBucket.add(ROSE, FIRST_BUCKET_SIZE);
