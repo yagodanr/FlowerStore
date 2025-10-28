@@ -12,11 +12,12 @@ import flowerstore_continue.PayPalPaymentStrategy;
 import flowerstore_continue.PaymentStrategy;
 import flowerstore_continue.PostDeliveryStrategy;
 
+import org.junit.jupiter.api.Assertions;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+//CHECKSTYLE:OFF
 public class OrderTest {
 
     private Flower rose;
@@ -38,7 +39,7 @@ public class OrderTest {
         order.addItem(new Item(tulip, 3));
 
         double expectedPrice = 2 * 50.0 + 3 * 30.0;
-        assertEquals(expectedPrice, order.getTotalPrice(), 0.001);
+        Assertions.assertEquals(expectedPrice, order.getTotalPrice(), 0.001);
     }
 
     @Test
@@ -50,7 +51,7 @@ public class OrderTest {
         order.addItem(new Item(rose, 1));
 
         int result = order.pay(order.getTotalPrice());
-        assertEquals(0, result, "PayPal payment should succeed (return 0)");
+        Assertions.assertEquals(0, result, "PayPal payment should succeed (return 0)");
     }
 
     @Test
@@ -62,7 +63,7 @@ public class OrderTest {
         order.addItem(new Item(tulip, 4));
 
         int result = order.pay(order.getTotalPrice());
-        assertEquals(0, result, "Credit card payment should succeed (return 0)");
+        Assertions.assertEquals(0, result, "Credit card payment should succeed (return 0)");
     }
 
     @Test
@@ -74,7 +75,7 @@ public class OrderTest {
         order.addItem(new Item(rose, 1));
 
         String status = order.orderDelivery("Kyiv");
-        assertTrue(status.toLowerCase().contains(" 15 minutes"));
+        Assertions.assertTrue(status.toLowerCase().contains(" 15 minutes"));
     }
 
     @Test
@@ -86,6 +87,7 @@ public class OrderTest {
         order.addItem(new Item(rose, 1));
 
         String status = order.orderDelivery("Lviv");
-        assertTrue(status.toLowerCase().contains(" 5 minutes"));
+        Assertions.assertTrue(status.toLowerCase().contains(" 5 minutes"));
     }
 }
+//CHECKSTYLE:ON
