@@ -9,6 +9,6 @@ import java.util.Optional;
 
 
 public interface FlowerRepository extends JpaRepository<Flower, Long>{
-    Optional<Flower> findByColor(FlowerColor color);
+    Optional<Flower> findByFlowerColor(FlowerColor flowerColor);
 
 }

@@ -19,8 +19,13 @@ public class FlowerService {
     }
 
     public void addFlower(Flower flower) {
-        if (!flowerRepository.findByColor(flower.getFlowerColor()).isPresent()) {
-            flowerRepository.save(flower);
+        if (flower.getFlowerColor() == null) {
+            throw new IllegalArgumentException("Flower color cannot be null");
         }
+        if (flower.getFlowerType() == null) {
+            throw new IllegalArgumentException("Flower type cannot be null");
+        }
+
+        flowerRepository.save(flower);
     }
 }
