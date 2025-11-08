@@ -3,8 +3,9 @@ package flowers;
 import java.util.ArrayList;
 import java.util.List;
 
+import flowerstore_continue.Item;
 
-public class FlowerBucket {
+public class FlowerBucket extends Item {
     private List<FlowerPack> flowerPacks = new ArrayList<>();
 
     public double getPrice() {

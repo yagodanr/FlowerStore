@@ -1,17 +1,15 @@
 package flowerstore_continue;
 
-import flowers.Flower;
+import lombok.Getter;
+import lombok.Setter;
 
-public class Item {
-    private Flower flower;
-    private int count;
+@Getter
+@Setter
+public abstract class Item {
+    protected String description;
 
-    public Item(Flower flowerInstance, int count) {
-        this.flower = new Flower(flowerInstance);
-        this.count = count;
+    public String getDescription() {
+        return description;
     }
-
-    public double getPrice() {
-        return flower.getPrice() * count;
-    }
+    public abstract double getPrice();
 }

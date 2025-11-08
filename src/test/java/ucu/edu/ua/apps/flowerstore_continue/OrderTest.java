@@ -1,93 +1,126 @@
 package ucu.edu.ua.apps.flowerstore_continue;
 
-import flowers.Flower;
-import flowers.FlowerColor;
-import flowers.FlowerType;
-import flowerstore_continue.CreditPaymentStrategy;
-import flowerstore_continue.DHLDeliveryStrategy;
+import org.junit.jupiter.api.Test;
+
 import flowerstore_continue.DeliveryStrategy;
 import flowerstore_continue.Item;
 import flowerstore_continue.Order;
-import flowerstore_continue.PayPalPaymentStrategy;
 import flowerstore_continue.PaymentStrategy;
-import flowerstore_continue.PostDeliveryStrategy;
 
 import org.junit.jupiter.api.Assertions;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+class OrderTest {
 
-//CHECKSTYLE:OFF
-public class OrderTest {
+    static class TestPayment implements PaymentStrategy {
+        double lastAmount = -1;
 
-    private Flower rose;
-    private Flower tulip;
+        @Override
+        public int pay(double amount) {
+            lastAmount = amount;
+            return 0;
+        }
 
-    @BeforeEach
-    void setup() {
-        rose = new Flower(null, 10.0, FlowerColor.RED, 50.0, FlowerType.ROSE);
-        tulip = new Flower(null, 15.0, FlowerColor.YELLOW, 30.0, FlowerType.TULIP);
+        @Override
+        public String getName() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getName'");
+        }
+    }
+
+    static class TestDelivery implements DeliveryStrategy {
+        String lastOrderId;
+        String lastUserId;
+        String lastDestination;
+
+        @Override
+        public int contactDeliveryService(String orderId, String userId, String destination) {
+            lastOrderId = orderId;
+            lastUserId = userId;
+            lastDestination = destination;
+            return 0;
+        }
+
+        @Override
+        public String getStatus(String orderId) {
+            return "ok:" + orderId;
+        }
+    }
+
+    static class TestItem extends Item {
+        private final double price;
+
+        TestItem(double price) {
+            this.price = price;
+        }
+
+        @Override
+        public double getPrice() {
+            return price;
+        }
+
+        @Override
+        public String getDescription() {
+            return "test";
+        }
     }
 
     @Test
-    void testAddItemAndTotalPrice() {
-        PaymentStrategy payment = new PayPalPaymentStrategy();
-        DeliveryStrategy delivery = new DHLDeliveryStrategy();
-
-        Order order = new Order("user123", payment, delivery);
-        order.addItem(new Item(rose, 2));
-        order.addItem(new Item(tulip, 3));
-
-        double expectedPrice = 2 * 50.0 + 3 * 30.0;
-        Assertions.assertEquals(expectedPrice, order.getTotalPrice(), 0.001);
+    void orderStoresUserId() {
+        Order o = new Order("u1", new TestPayment(), new TestDelivery());
+        Assertions.assertEquals("u1", o.getUserId());
+        Assertions.assertNotNull(o.getOrderId());
     }
 
     @Test
-    void testPayWithPayPalStrategy() {
-        PaymentStrategy payment = new PayPalPaymentStrategy();
-        DeliveryStrategy delivery = new DHLDeliveryStrategy();
-        Order order = new Order("user1", payment, delivery);
+    void addItemsWorks() {
+        Order o = new Order("u1", new TestPayment(), new TestDelivery());
 
-        order.addItem(new Item(rose, 1));
+        o.addItem(new TestItem(10));
+        o.addItem(new TestItem(5));
 
-        int result = order.pay(order.getTotalPrice());
-        Assertions.assertEquals(0, result, "PayPal payment should succeed (return 0)");
+        Assertions.assertEquals(2, o.getItems().size());
+        Assertions.assertEquals(15.0, o.getTotalPrice());
     }
 
     @Test
-    void testPayWithCreditCardStrategy() {
-        PaymentStrategy payment = new CreditPaymentStrategy();
-        DeliveryStrategy delivery = new DHLDeliveryStrategy();
-        Order order = new Order("user2", payment, delivery);
+    void removeItemWorks() {
+        Order o = new Order("u1", new TestPayment(), new TestDelivery());
+        TestItem a = new TestItem(10);
+        TestItem b = new TestItem(5);
 
-        order.addItem(new Item(tulip, 4));
+        o.addItem(a);
+        o.addItem(b);
+        o.removeItem(a);
 
-        int result = order.pay(order.getTotalPrice());
-        Assertions.assertEquals(0, result, "Credit card payment should succeed (return 0)");
+        Assertions.assertEquals(1, o.getItems().size());
+        Assertions.assertEquals(5.0, o.getTotalPrice());
     }
 
     @Test
-    void testDHLDelivery() {
-        PaymentStrategy payment = new PayPalPaymentStrategy();
-        DeliveryStrategy delivery = new DHLDeliveryStrategy();
-        Order order = new Order("user3", payment, delivery);
+    void paymentDelegatesToStrategy() {
+        TestPayment p = new TestPayment();
+        Order o = new Order("u1", p, new TestDelivery());
 
-        order.addItem(new Item(rose, 1));
+        o.addItem(new TestItem(12));
+        o.addItem(new TestItem(8));
 
-        String status = order.orderDelivery("Kyiv");
-        Assertions.assertTrue(status.toLowerCase().contains(" 15 minutes"));
+        int r = o.pay(o.getTotalPrice());
+
+        Assertions.assertEquals(20.0, p.lastAmount);
+        Assertions.assertEquals(0, r);
     }
 
     @Test
-    void testPostDelivery() {
-        PaymentStrategy payment = new PayPalPaymentStrategy();
-        DeliveryStrategy delivery = new PostDeliveryStrategy();
-        Order order = new Order("user4", payment, delivery);
+    void deliveryDelegatesToStrategy() {
+        TestPayment p = new TestPayment();
+        TestDelivery d = new TestDelivery();
+        Order o = new Order("u1", p, d);
 
-        order.addItem(new Item(rose, 1));
+        String result = o.orderDelivery("Kyiv");
 
-        String status = order.orderDelivery("Lviv");
-        Assertions.assertTrue(status.toLowerCase().contains(" 5 minutes"));
+        Assertions.assertEquals(o.getOrderId(), d.lastOrderId);
+        Assertions.assertEquals("u1", d.lastUserId);
+        Assertions.assertEquals("Kyiv", d.lastDestination);
+        Assertions.assertEquals("ok:" + o.getOrderId(), result);
     }
 }
-//CHECKSTYLE:ON
