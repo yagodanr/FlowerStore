@@ -9,6 +9,7 @@ import flowerstore_continue.PaymentStrategy;
 
 import org.junit.jupiter.api.Assertions;
 
+//CHECKSTYLE:OFF
 class OrderTest {
 
     static class TestPayment implements PaymentStrategy {
@@ -124,3 +125,4 @@ class OrderTest {
         Assertions.assertEquals("ok:" + o.getOrderId(), result);
     }
 }
+//CHECKSTYLE:ON

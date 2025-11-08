@@ -8,7 +8,7 @@ import flowers.FlowerColor;
 import java.util.Optional;
 
 
-public interface FlowerRepository extends JpaRepository<Flower, Long>{
+public interface FlowerRepository extends JpaRepository<Flower, Long> {
     Optional<Flower> findByFlowerColor(FlowerColor flowerColor);
 
 }

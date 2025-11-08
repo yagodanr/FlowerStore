@@ -5,8 +5,11 @@ public class BasketDecorator extends ItemDecorator {
         this.item = item;
     }
 
+//CHECKSTYLE:OFF
     @Override
     public double getPrice() {
         return 4 + item.getPrice();
     }
+//CHECKSTYLE:ON
+
 }

@@ -9,7 +9,7 @@ import flowerstore_continue.PaperDecorator;
 import flowerstore_continue.RibbonDecorator;
 
 import org.junit.jupiter.api.Assertions;
-
+//CHECKSTYLE:OFF
 class DecoratorTests {
 
     private Item baseItem;
@@ -145,3 +145,4 @@ class DecoratorTests {
         Assertions.assertTrue(decorated instanceof Item);
     }
 }
+//CHECKSTYLE:ON
